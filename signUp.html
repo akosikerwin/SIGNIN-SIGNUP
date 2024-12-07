@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <input type="text" id="username" placeholder="Email or username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="registerUser()">Register</button>
+    <p class="output"></p>
+    <div class="sign-up">
+      <p>Already have an account? <a href="signIn.html">Sign in</a></p>
+    </div>
+  </div>
+
+  <script>
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    function registerUser() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const output = document.querySelector(".output");
+
+      if (!username || !password) {
+        output.textContent = "Please fill in both fields.";
+        return;
+      }
+
+      const existingUser = users.find((user) => user.username === username);
+      if (existingUser) {
+        output.textContent = "Username is already taken. Please choose another one.";
+        return;
+      }
+
+      users.push({ username, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      output.textContent = "Registration successful! Redirecting...";
+      setTimeout(() => {
+        window.location.href = "signIn.html";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

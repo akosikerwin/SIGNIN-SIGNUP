@@ -1,0 +1,116 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #2E3192, #1BFFFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  
+  .container,
+  .login-container {
+    background: rgba(46, 49, 146, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+    backdrop-filter: blur(10px); 
+  }
+  
+  
+  h1 {
+    font-size: 24px;
+    color: #fff; 
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
+  }
+  
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333; 
+    background: rgba(255, 255, 255, 0.7);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #1BFFFF; 
+  }
+  
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #fff; 
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #555; 
+    transform: scale(1.02); 
+  }
+  
+  
+  .output {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #fff; 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
+  }
+  
+  
+  .sign-up {
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
+  }
+  
+  .sign-up a {
+    color: #4caf50; 
+    text-decoration: none;
+  }
+  
+  .sign-up a:hover {
+    text-decoration: underline; 
+  }
+  
+  
+  .user-icon {
+    font-size: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  @media (max-width: 480px) {
+    .container,
+    .login-container {
+      width: 90%; 
+      padding: 30px; 
+    }
+  
+    h1 {
+      font-size: 20px; 
+    }
+  
+    button {
+      font-size: 14px; 
+    }
+  }
+  
