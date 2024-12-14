@@ -12,6 +12,8 @@
     <h1>Sign Up</h1>
     <input type="text" id="username" placeholder="Email or username">
     <input type="password" id="password" placeholder="Password">
+    <input type="date" id="dob" placeholder="Date of Birth">
+    <input type="tel" id="contact" placeholder="Contact Number" pattern="[0-9]{10,15}">
     <button onclick="registerUser()">Register</button>
     <p class="output"></p>
     <div class="sign-up">
@@ -25,10 +27,12 @@
     function registerUser() {
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
+      const dob = document.getElementById("dob").value;
+      const contact = document.getElementById("contact").value;
       const output = document.querySelector(".output");
 
-      if (!username || !password) {
-        output.textContent = "Please fill in both fields.";
+      if (!username || !password || !dob || !contact) {
+        output.textContent = "Please fill in all fields.";
         return;
       }
 
@@ -38,7 +42,7 @@
         return;
       }
 
-      users.push({ username, password });
+      users.push({ username, password, dob, contact });
       localStorage.setItem("users", JSON.stringify(users));
 
       output.textContent = "Registration successful! Redirecting...";
