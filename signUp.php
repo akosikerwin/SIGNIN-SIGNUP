@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Redirect to home if already logged in
 if (isset($_SESSION['username'])) {
     header("Location: home.php");
     exit();
@@ -33,3 +32,4 @@ if (isset($_SESSION['username'])) {
   </div>
 </body>
 </html>
+
