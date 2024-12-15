@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// Check if the user is logged in; if not, redirect to the login page
 if (!isset($_SESSION['username'])) {
     header("Location: signIn.php");
     exit();
 }
 
-// Fetch the logged-in user's username
 $username = htmlspecialchars($_SESSION['username']);
 ?>
 
@@ -26,9 +24,7 @@ $username = htmlspecialchars($_SESSION['username']);
     <p>Your innovative solutions hub for tackling child malnutrition.</p>
 
     <div class="buttons">
-      <a href="profile.php" class="btn">View Profile</a>
-      <a href="dashboard.php" class="btn">Go to Dashboard</a>
-      <a href="logout.php" class="btn logout">Log Out</a>
+      <a href="signIn.php" class="btn logout">Log Out</a>
     </div>
   </div>
 
@@ -94,3 +90,4 @@ $username = htmlspecialchars($_SESSION['username']);
   </style>
 </body>
 </html>
+
