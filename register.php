@@ -1,49 +1,36 @@
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "user_management";
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST['username'];
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT); 
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password
+    $dob = $_POST['dob'];
+    $contact = $_POST['contact'];
 
-    
-    $checkUserQuery = $conn->prepare("SELECT id FROM users WHERE username = ?");
-    $checkUserQuery->bind_param("s", $user);
-    $checkUserQuery->execute();
-    $checkUserQuery->store_result();
+    // Check if username already exists
+    $query = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $query->bind_param("s", $username);
+    $query->execute();
+    $query->store_result();
 
-    if ($checkUserQuery->num_rows > 0) {
-        echo "Username already taken. Please try another.";
+    if ($query->num_rows > 0) {
+        echo "<script>alert('Username already exists. Please choose another.'); window.history.back();</script>";
     } else {
-        
-        $insertQuery = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $insertQuery->bind_param("ss", $user, $pass);
+        // Insert new user
+        $insert = $conn->prepare("INSERT INTO users (username, password, dob, contact) VALUES (?, ?, ?, ?)");
+        $insert->bind_param("ssss", $username, $password, $dob, $contact);
 
-        if ($insertQuery->execute()) {
-            echo "Registration successful!";
-            header("Location: signIn.html"); 
-            exit();
+        if ($insert->execute()) {
+            echo "<script>alert('Registration successful!'); window.location.href = 'signIn.php';</script>";
         } else {
-            echo "Error: " . $insertQuery->error;
+            echo "Error: " . $insert->error;
         }
 
-        $insertQuery->close();
+        $insert->close();
     }
 
-    $checkUserQuery->close();
+    $query->close();
+    $conn->close();
 }
-
-$conn->close();
 ?>
+
