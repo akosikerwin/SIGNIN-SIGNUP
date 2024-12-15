@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// If the user is already logged in, redirect to the home page
 if (isset($_SESSION['username'])) {
     header("Location: home.php");
     exit();
@@ -41,7 +40,6 @@ if (isset($_SESSION['username'])) {
       $username = $_POST['username'];
       $password = $_POST['password'];
 
-      // Check the credentials
       $query = $conn->prepare("SELECT password FROM users WHERE username = ?");
       $query->bind_param("s", $username);
       $query->execute();
@@ -61,3 +59,4 @@ if (isset($_SESSION['username'])) {
   ?>
 </body>
 </html>
+
