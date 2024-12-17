@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: signIn.php");
+    exit();
+}
+
 if (!isset($_SESSION['username'])) {
     header("Location: signIn.php");
     exit();
@@ -24,7 +32,7 @@ $username = htmlspecialchars($_SESSION['username']);
     <p>Your innovative solutions hub for tackling child malnutrition.</p>
 
     <div class="buttons">
-      <a href="signIn.php" class="btn logout">Log Out</a>
+      <a href="home.php?logout=true" class="btn logout">Log Out</a>
     </div>
   </div>
 
@@ -90,4 +98,3 @@ $username = htmlspecialchars($_SESSION['username']);
   </style>
 </body>
 </html>
-
